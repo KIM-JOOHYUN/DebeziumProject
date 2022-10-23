@@ -1,0 +1,25 @@
+version: "3.9"
+services:
+  # Install Source MySQL DB and Set Member database
+  mysql-1:
+    container_name: source-db
+    image: mysql
+    ports:
+      - 3305:3306
+    environment:
+      MYSQL_ROOT_PASSWORD: root
+      MYSQL_USER: user
+      MYSQL_PASSWORD: pw1234
+      MYSQL_DATABASE: memberdb
+
+  # Install Target MySQL DB and Set Member database
+  mysql-2:
+    container_name: target-db
+    image: mysql
+    ports:
+      - 3304:3306
+    environment:
+      MYSQL_ROOT_PASSWORD: root
+      MYSQL_USER: user
+      MYSQL_PASSWORD: pw1234
+      MYSQL_DATABASE: memberdb
