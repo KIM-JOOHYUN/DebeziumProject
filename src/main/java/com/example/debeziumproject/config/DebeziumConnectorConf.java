@@ -9,20 +9,20 @@ import java.io.IOException;
 
 @Configuration
 public class DebeziumConnectorConf {
-    @Value("${customer.datasource.host}")
-    private String customerDbHost;
+    @Value("${source.datasource.host}")
+    private String sourceDbHost;
 
-    @Value("${customer.datasource.database}")
-    private String customerDbName;
+    @Value("${source.datasource.database}")
+    private String sourceDbName;
 
-    @Value("${customer.datasource.port}")
-    private String customerDbPort;
+    @Value("${source.datasource.port}")
+    private String sourceDbPort;
 
-    @Value("${customer.datasource.username}")
-    private String customerDbUsername;
+    @Value("${source.datasource.username}")
+    private String sourceDbUsername;
 
-    @Value("${customer.datasource.password}")
-    private String customerDbPassword;
+    @Value("${source.datasource.password}")
+    private String sourceDbPassword;
     /**
      * Member Database Connector Configuration
      */
@@ -31,20 +31,21 @@ public class DebeziumConnectorConf {
         File offsetStorageTempFile = File.createTempFile("offsets_", ".dat");
         File dbHistoryTempFile = File.createTempFile("dbhistory_", ".dat");
         return io.debezium.config.Configuration.create()
-                .with("name", "customer-mysql-connector")
+                .with("name", "source-mysql-connector")
                 .with("connector.class", "io.debezium.connector.mysql.MySqlConnector")
                 .with("offset.storage", "org.apache.kafka.connect.storage.FileOffsetBackingStore")
-                .with("offset.storage.file.filename", "/tmp/offsets2.dat")
+                .with("offset.storage.file.filename", "/tmp/offsets6.dat")
                 .with("offset.flush.interval.ms", "60000")
-                .with("database.hostname", customerDbHost)
-                .with("database.port", customerDbPort)
-                .with("database.user", customerDbUsername)
-                .with("database.password", customerDbPassword)
-                .with("database.dbname", customerDbName)
-                .with("database.include.list", customerDbName)
+                .with("database.hostname", sourceDbHost)
+                .with("database.port", sourceDbPort)
+                .with("database.user", sourceDbUsername)
+                .with("database.password", sourceDbPassword)
+                .with("database.dbname", sourceDbName)
+                .with("database.include.list", sourceDbName)
+                .with("database.allowPublicKeyRetrieval", true)
                 .with("include.schema.changes", "false")
-                .with("database.server.id", "10182")
-                .with("database.server.name", "customer-mysql-db-server")
+                .with("database.server.id", "10181")
+                .with("database.server.name", "source-mysql-db-server")
                 .with("database.history", "io.debezium.relational.history.FileDatabaseHistory")
                 .with("database.history.file.filename", "/tmp/dbhistory.dat")
                 .with("database.history.store.only.monitored.tables.ddl","true")
