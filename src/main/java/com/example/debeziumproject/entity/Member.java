@@ -5,16 +5,21 @@ import lombok.Setter;
 
 import javax.persistence.Entity;
 import javax.persistence.Id;
+import javax.persistence.Index;
 import javax.persistence.Table;
 
 @Entity
+@Table(name = "Member", indexes = {
+        @Index(name = "idx_member_id", columnList = "id")
+})
 @Getter
 @Setter
 public class Member {
     @Id
     public Integer id;
 
-    public Integer username;
-    public Integer team;
-    public Integer position;
+    public String username;
+    public String team;
+    public Integer backnumber;
+    public String position;
 }
