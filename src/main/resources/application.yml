@@ -3,21 +3,38 @@ server:
   port: 8080
 
 ## Primary/Target Database Properties
-#Target1 (Mysql)
 spring:
+  #Target1 (Mysql)
   datasource:
+    jdbcurl: jdbc:mysql://210.109.60.247:10071/memberdb #local
     url: jdbc:mysql://210.109.60.247:10071/memberdb #kic
+#    jdbcurl: jdbc:mysql://localhost:3304/memberdb #local
 #    url: jdbc:mysql://localhost:3304/memberdb #local
     username: root
     password: root
-#  jpa.hibernate.ddl-auto: create
-  jpa.show-sql: true
-#Target2 (Oracle)
-datasource:
-  url: jdbc:oracle:thin:@orademoapt?TNS_ADMIN=$ORACLE_WALLET
-  username: admin
-  password: KTgLi-$sgZbj36n
-  driver-class-name: oracle.jdbc.driver.OracleDriver
+    driver-class-name: com.mysql.cj.jdbc.Driver
+
+  #  jpa.hibernate.ddl-auto: create
+  jpa:
+    properties:
+      hibernate:
+        hbm2ddl:
+          auto: validate
+        show_sql: true
+        format_sql: true
+        enable_lazy_load_no_trans: true
+        dialect: org.hibernate.dialect.MySQL5Dialect
+    database: mysql
+#  jpa.show-sql: true
+  #Target2 (Oracle)
+  datasource2:
+    jdbcurl: jdbc:mysql://210.109.60.247:10072/memberdb #local
+    url: jdbc:mysql://210.109.60.247:10072/memberdb #kic
+#    jdbcurl: jdbc:mysql://localhost:3303/memberdb #local
+#    url: jdbc:mysql://localhost:3303/memberdb #local
+    username: root
+    password: root
+    driver-class-name: com.mysql.cj.jdbc.Driver
 
 ## Source Database Properties
 source:

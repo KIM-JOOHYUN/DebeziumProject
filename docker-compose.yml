@@ -12,12 +12,23 @@ services:
       MYSQL_PASSWORD: pw1234
       MYSQL_DATABASE: memberdb
 
-  # Install Target MySQL DB and Set Member database
+  # Install Target MySQL DBs and Set Member database
   mysql-2:
-    container_name: target-db
+    container_name: target-db1
     image: mysql
     ports:
       - 3304:3306
+    environment:
+      MYSQL_ROOT_PASSWORD: root
+      MYSQL_USER: user
+      MYSQL_PASSWORD: pw1234
+      MYSQL_DATABASE: memberdb
+
+  mysql-3:
+    container_name: target-db2
+    image: mysql
+    ports:
+      - 3303:3306
     environment:
       MYSQL_ROOT_PASSWORD: root
       MYSQL_USER: user

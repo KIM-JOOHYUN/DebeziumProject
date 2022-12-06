@@ -59,18 +59,18 @@
         <dependency>
             <groupId>io.debezium</groupId>
             <artifactId>debezium-api</artifactId>
-            <version>1.8.0.Final</version>
+            <version>1.8.1.Final</version>
         </dependency>
         <dependency>
             <groupId>io.debezium</groupId>
             <artifactId>debezium-embedded</artifactId>
-            <version>1.8.0.Final</version>
+            <version>1.8.1.Final</version>
         </dependency>
 
         <dependency>
             <groupId>io.debezium</groupId>
             <artifactId>debezium-connector-mysql</artifactId>
-            <version>1.8.0.Final</version>
+            <version>1.8.1.Final</version>
         </dependency>
         <dependency>
             <groupId>org.apache.commons</groupId>
@@ -99,6 +99,16 @@
         <dependency>
             <groupId>com.oracle.ojdbc</groupId>
             <artifactId>oraclepki</artifactId>
+            <version>19.3.0.0</version>
+        </dependency>
+        <dependency>
+            <groupId>com.oracle.ojdbc</groupId>
+            <artifactId>ons</artifactId>
+            <version>19.3.0.0</version>
+        </dependency>
+        <dependency>
+            <groupId>com.oracle.ojdbc</groupId>
+            <artifactId>simplefan</artifactId>
             <version>19.3.0.0</version>
         </dependency>
     </dependencies>

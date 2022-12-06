@@ -1,5 +1,6 @@
 package com.example.debeziumproject.listener;
 import com.example.debeziumproject.service.MemberService;
+import com.example.debeziumproject.service.MemberService2;
 import io.debezium.config.Configuration;
 import io.debezium.embedded.Connect;
 import io.debezium.engine.DebeziumEngine;
@@ -28,9 +29,10 @@ import static java.util.stream.Collectors.toMap;
 public class DebeziumListener {
     private final Executor executor = Executors.newSingleThreadExecutor();
     private final MemberService memberService;
+    private final MemberService2 memberService2;
     private final DebeziumEngine<RecordChangeEvent<SourceRecord>> debeziumEngine;
 
-    public DebeziumListener(Configuration memberConnectorConfiguration, MemberService memberService) {
+    public DebeziumListener(Configuration memberConnectorConfiguration, MemberService memberService, MemberService2 memberService2) {
 
         this.debeziumEngine = DebeziumEngine.create(ChangeEventFormat.of(Connect.class))
                 .using(memberConnectorConfiguration.asProperties())
@@ -38,6 +40,7 @@ public class DebeziumListener {
                 .build();
 
         this.memberService = memberService;
+        this.memberService2 = memberService2;
     }
 
     private void handleChangeEvent(RecordChangeEvent<SourceRecord> sourceRecordRecordChangeEvent) {
@@ -61,6 +64,8 @@ public class DebeziumListener {
                         .collect(toMap(Pair::getKey, Pair::getValue));
 
                 this.memberService.replicateData(payload, operation);
+                log.info("Updated Data: {} with Operation: {}", payload, operation.name());
+                this.memberService2.replicateData(payload, operation);
                 log.info("Updated Data: {} with Operation: {}", payload, operation.name());
             }
         }
