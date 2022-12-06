@@ -1,5 +1,7 @@
 package com.example.debeziumproject;
 
+import oracle.jdbc.driver.OracleConnection;
+
 import java.sql.Connection;
 import java.sql.DriverManager;
 
@@ -15,13 +17,16 @@ public class OracleTest {
     }
 
     public static void main(String[] args) {
-        try (Connection con =
-                     DriverManager.getConnection(
-                             "jdbc:oracle:thin:@orademoapt?TNS_ADMIN=C:/Users/infen/OneDrive/Desktop/SW22_카카오엔터프라이즈/데이터 관리 기술/Oracle/Wallet_orademoapt",
+        try (OracleConnection con =
+                     (OracleConnection)DriverManager.getConnection(
+                             "jdbc:oracle:thin:@orademoapt_medium?TNS_ADMIN=/Users/infen/Documents/Wallet_orademoapt/",
                              "admin",
                              "KTgLi-$sgZbj36n"
-                     )) {
+                     )
+        ) {
+            System.out.println("Conncetion : " + con);
         } catch (Exception e) {
+            System.out.println(e);
             fail(e.getMessage());
         }
     }
