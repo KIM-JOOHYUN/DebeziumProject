@@ -6,8 +6,8 @@ server:
 #Target1 (Mysql)
 spring:
   datasource:
-#    url: jdbc:mysql://172.16.3.124:3304/memberdb #kic
-    url: jdbc:mysql://localhost:3304/memberdb #local
+    url: jdbc:mysql://210.109.60.247:10071/memberdb #kic
+#    url: jdbc:mysql://localhost:3304/memberdb #local
     username: root
     password: root
 #  jpa.hibernate.ddl-auto: create
@@ -22,9 +22,10 @@ datasource:
 ## Source Database Properties
 source:
   datasource:
-#    host: 172.16.3.124 #kic
-    host: localhost #local
-    port: 3305
+    host: 210.109.60.247 #kic
+#    host: localhost #local
+    port: 10070 #kic
+#    port: 3305 #local
     database: memberdb
     username: root
     password: root
