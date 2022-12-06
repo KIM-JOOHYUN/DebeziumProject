@@ -59,18 +59,18 @@
         <dependency>
             <groupId>io.debezium</groupId>
             <artifactId>debezium-api</artifactId>
-            <version>1.4.2.Final</version>
+            <version>1.8.0.Final</version>
         </dependency>
         <dependency>
             <groupId>io.debezium</groupId>
             <artifactId>debezium-embedded</artifactId>
-            <version>1.4.2.Final</version>
+            <version>1.8.0.Final</version>
         </dependency>
 
         <dependency>
             <groupId>io.debezium</groupId>
             <artifactId>debezium-connector-mysql</artifactId>
-            <version>1.4.2.Final</version>
+            <version>1.8.0.Final</version>
         </dependency>
         <dependency>
             <groupId>org.apache.commons</groupId>
